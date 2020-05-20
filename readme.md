@@ -343,3 +343,5 @@ function ejercitar() {
   actualizarHTML()
 }
 ```
+
+![](https://media.giphy.com/media/jenIWU63oKK0o/giphy.gif)
