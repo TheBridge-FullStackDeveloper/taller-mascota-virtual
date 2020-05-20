@@ -6,9 +6,7 @@
 
 ![](resultado.png)
 
-https://nostalgic-css.github.io/NES.css/
-
-## Iteración 1: Un título, un panda cualquiera y las características. ##
+## Iteración 1: Un título, un panda cualquiera y sus características. ##
 
 En esta iteración nos centraremos en:
 
@@ -67,30 +65,171 @@ El elemento párrafo es el apropiado para distribuir el texto en párrafos.
 <p>texto</p>
 ```
 
+![](https://media.giphy.com/media/uSYQsJQWEv6O4/giphy-downsized-large.gif)
+
 ## Iteración 2: Nuestro panda, en una vitrina. ##
+
+### Nuestro panda ###
+
+#### Javascript - objeto panda ####
+
+```javascript
+var mascota = {
+    nombre: 'Acho',
+    peso: 8,
+    felicidad: 6
+}
+```
+
+### La vitrina ###
 
 #### HTML - Span ####
 
 Sirve para aplicar estilo al texto
 
 ```html
-<span class="nombre"></span>
+<span>texto</span>
 ```
+
+#### HTML - Clases ####
+
+El atributo global class es una lista de las clases del elemento separada por espacios.
+
+```html
+<span class="nombre">texto</span>
+```
+
+#### Javascript - ¡A pintar! ####
+
+JQuery es una "biblioteca", mal llamada "librería", de Javascript. Hace que interactuar con el HTML sea mucho más fácil.
+
+```javascript
+  $('.nombre').text(mascota.nombre)
+  $('.peso').text(mascota.peso)
+  $('.felicidad').text(mascota.felicidad)
+```
+
+[JQuery](https://jquery.com)
+
+[Text](https://api.jquery.com/text/#text)
+
+[Chuleta JQuery](https://oscarotero.com/jquery)
+
+![](https://media.giphy.com/media/TObbUke0z8Mo/giphy.gif)
 
 ## Iteración 3: Adoptemos el panda y ¡Hagamos cositas con él! ##
 
-## Iteración de lujo: ¡Por Crom que esto lucirá muy "molonamente"! ##
+### Hagamos cositas con el panda ###
 
+#### Javascript - Función ####
 
-### Botón ###
+Una función es un fragmento de código que puede ser llamado por otro código.
+
+¿Recordáis esto?
+
+```javascript
+  $('.nombre').text(mascota.nombre)
+  $('.peso').text(mascota.peso)
+  $('.felicidad').text(mascota.felicidad)
+```
+
+Pues convirtámoslo en esto:
+
+```javascript
+function actualizarHTML() {
+  $('.nombre').html(mascota.nombre)
+  $('.peso').text(mascota.peso)
+  $('.felicidad').text(mascota.felicidad)
+}
+```
+
+Y, después de ver que no ocurre nada, colocad esto justo después:
+
+```javascript
+actualizarHTML()
+```
+
+![](https://media.giphy.com/media/3XR0chfiSTtAI/giphy.gif)
+
+### Hagamos más cositas ###
+
+#### HTML - Botón ####
 
 La etiqueta de HTML `<button>` representa un elemento cliqueable de tipo botón.
 
 ```html
-<button onclick="hazAlgo()">Haz click aquí</button>
+<button onclick="dameDeComer()">Haz click aquí</button>
 ```
 
-## CSS ##
+#### Javascript - dameDeComer ####
+
+```javascript
+function dameDeComer() {
+    alert('Dame de comer!')
+}
+```
+
+![](https://media.giphy.com/media/fAaBpMgGuyf96/giphy.gif)
+
+## Iteración 4: Ciudemos de nuestro panda ##
+
+Cuidaremos a nuestro panda con 3 acciones:
+- Alimentar:
+  - +1 felicidad
+  - +2 peso
+- Jugar:
+  - +2 felicidad
+  - -1 peso
+- Ejercitar:
+  - -1 felicidad
+  - -1 peso
+
+Al igual que antes, necesitaremos un **botón** para cada una y una **función** asociada
+
+### Alimentar ###
+
+#### HTML - boton ####
+
+```html
+<button onclick="alimentar()">Alimentar</button>
+```
+
+#### Javascript - alimentar ####
+
+```javascript
+function alimentar() {
+    mascota.felicidad = mascota.felicidad + 1
+    mascota.peso = mascota.peso + 2
+
+    actualizarHTML()
+}
+```
+
+### Jugar ###
+
+Funciona igual que `alimentar`
+
+### Ejercitar ###
+
+Funciona igual que `alimentar`
+
+![](https://media.giphy.com/media/xTk9ZRJytbejZGlzqg/giphy.gif)
+
+## Iteración de lujo: ¡Por Crom que esto lucirá muy "molonamente"! ##
+
+[NES CSS](https://nostalgic-css.github.io/NES.css/)
+
+### Importamos nuestra biblioteca ###
+
+#### CSS - Importar bibliotecas ####
+
+```css
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
+
+@import url('https://unpkg.com/nes.css/css/nes.css');
+```
+
+##### CSS #####
 
 ```CSS
 selector {
@@ -98,307 +237,109 @@ selector {
 }
 ```
 
-### Texto ###
-
--------------------------------------------------------------------------------
-
-#### font-family ####
+#### CSS - Texto ####
 
 La propiedad font-family define una lista de fuentes o familias de fuentes, con un orden de prioridad, para utilizar en un elemento seleccionado.
 
 ```CSS
-selector {
-    font-family: serif;
+* {
+    font-family: Press Start 2P;
 }
 ```
 
-Valores que usaremos: `serif` y `sans-serif`
+#### HTML - Aplicar estilo mediante clases ####
 
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/font-family)
+##### contenedores #####
 
--------------------------------------------------------------------------------
+```html
+<section class="nes-container with-title is-centered">
+  <p class="title">Container.is-centered</p>
+  <p>Good morning. Thou hast had a good night's sleep, I hope.</p>
+</section>
+```
 
-#### font-size ####
+##### botones #####
 
-La propiedad font-size especifica la dimensión de la letra.
+```html
+<button class="nes-btn is-primary">Primary</button>
+<button class="nes-btn is-success">Success</button>
+<button class="nes-btn is-warning">Warning</button>
+<button class="nes-btn is-error">Error</button>
+```
 
-```CSS
-selector {
-    font-size: 1.6em;
+![](https://media.giphy.com/media/WRriRIfVO0cRW/giphy.gif)
+
+## Código final ##
+
+### HTML ###
+
+```html
+<h1>Mi mascota</h1>
+<img src="https://3.bp.blogspot.com/-xKTu7NmDIzM/VO3EFSZbAlI/AAAAAAAAHPo/f3BDecJDFn8/s1600/panda.gif" alt="">
+<section class="nes-container with-title">
+  <p class="title">Nombre: <span class="nombre"></span></p>
+  <p>Peso: <span class="peso"></span></p>
+  <p>Felicidad: <span class="felicidad"></span></p>
+</section>
+<section class="nes-container is-centered">
+  <button class="nes-btn is-primary" onclick="alimentar()">Alimentar</button>
+  <button class="nes-btn is-success" onclick="jugar()">Jugar</button>
+  <button class="nes-btn is-error" onclick="ejercitar()">Ejercitar</button>
+  <button class="nes-btn is-warning" onclick="dameDeComer()">Dame de comer!</button>
+</section>
+```
+
+### CSS ###
+
+```css
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
+
+@import url('https://unpkg.com/nes.css/css/nes.css');
+
+* {
+   font-family: "Press Start 2P";
 }
 ```
 
-Valores que usaremos: `1em` - `8em`
+### Javascript ###
 
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/font-size)
+```javascript
+var mascota = {
+  nombre: 'Acho',
+  peso: 8,
+  felicidad: 6
+}
 
--------------------------------------------------------------------------------
+function actualizarHTML() {
+  $('.nombre').html(mascota.nombre)
+  $('.peso').text(mascota.peso)
+  $('.felicidad').text(mascota.felicidad)
+}
 
-#### font-weight ####
+actualizarHTML()
 
-La propiedad font-weight de CSS especifica el peso o grueso de la letra.
+function dameDeComer() {
+  alert('Dame de comer!')
+}
 
-```CSS
-selector {
-    font-weight: bold;
+function alimentar() {
+  mascota.felicidad = mascota.felicidad + 1
+  mascota.peso = mascota.peso + 2
+
+  actualizarHTML()
+}
+
+function jugar() {
+  mascota.felicidad = mascota.felicidad + 2
+  mascota.peso = mascota.peso - 1
+
+  actualizarHTML()
+}
+
+function ejercitar() {
+  mascota.felicidad = mascota.felicidad - 1
+  mascota.peso = mascota.peso - 1
+
+  actualizarHTML()
 }
 ```
-
-Valores que usaremos: `bold`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/font-weight)
-
--------------------------------------------------------------------------------
-
-#### line-height ####
-
-Comúnmente se usa para establecer la distancia entre líneas de texto.
-
-```CSS
-selector {
-    line-height: 1.2em;
-}
-```
-
-Valores que usaremos: `0.8em` - `1.5em`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/line-height)
-
--------------------------------------------------------------------------------
-
-#### text-align ####
-
-Establece el alineamiento horizontal de un texto.
-
-```CSS
-selector {
-    text-align: center;
-}
-```
-
-Valores que usaremos: `center` - `justify`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/text-align)
-
--------------------------------------------------------------------------------
-
-#### text-transform ####
-
-La propiedad CSS text-transform especifica el cambio entre mayúsculas y minúsculas del texto de un elemento
-
-```CSS
-selector {
-    text-transform: uppercase;
-}
-```
-
-Valores que usaremos: `uppercase`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/text-transform)
-
--------------------------------------------------------------------------------
-
-#### hypens ####
-
-La propiedad CSS hyphens especifica cómo deben dividirse las palabras cuando el texto se ajusta a través de múltiples líneas.
-
-```CSS
-selector {
-    hyphens: auto;
-}
-```
-
-Valores que usaremos: `auto`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/hyphens)
-
--------------------------------------------------------------------------------
-
-### Colores ###
-
-#### background-color ####
-
-Background-color es un propiedad de CSS que define el color de fondo de un elemento
-
-```CSS
-selector {
-    background-color: OldLace;
-}
-```
-
-Valores que usaremos: `OldLace`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/background-color)
-
--------------------------------------------------------------------------------
-
-#### color ####
-
-La propiedad de CSS color selecciona el valor de color de primer plano del contenido de elemento de texto y decoraciones de texto
-
-```CSS
-selector {
-    color: #404040;
-}
-```
-
-Valores que usaremos:  `#404040`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/color)
-
--------------------------------------------------------------------------------
-
-### Distribución ###
-
-#### columns
-
-Establece el número de columnas de un elemento
-
-```CSS
-selector {
-    columns: 3;
-}
-```
-
-valores que usaremos: `3`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/columns)
-
----
-
-#### column-gap
-
-Establece el espaciado entre los elementos de las distintas columnas
-
-```CSS
-selector {
-    column-gap: 40px;
-}
-```
-
-valores que usaremos: `40px`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/column-gap)
-
----
-
-#### column-rule
-
-Pinta una línea para separar las columnas
-
-```CSS
-selector {
-    column-rule: medium solid #404040;
-}
-```
-
-valores que usaremos: `medium solid #444`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/column-rule)
-
----
-
-#### padding
-
-La propiedad CSS `padding` establece el espacio de relleno por todos los lados de un elemento.
-
-Método abreviado:
-```CSS
-selector {
-    padding: 12px;
-}
-```
-
-Método abreviado, múltiples valores:
-```CSS
-selector {
-    padding: 0 5px 10px 15px;
-}
-```
-
-Descomposición de método abreviado en múltiples valores:
-```CSS
-selector {
-    padding-top: 0;
-    padding-right: 5px;
-    padding-bottom: 10px;
-    padding-left: 15px;
-}
-```
-
-valores que usaremos: `0` - `12px`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/padding)
-
----
-
-#### margin
-
-La propiedad CSS `margin` establece el espacio exterior por todos los lados de un elemento.
-
-Método abreviado:
-```CSS
-selector {
-    margin: 12px;
-}
-```
-
-Método abreviado, múltiples valores:
-```CSS
-selector {
-    margin: 0 5px 10px 15px;
-}
-```
-
-Descomposición de método abreviado en múltiples valores:
-```CSS
-selector {
-    margin-top: 0;
-    margin-right: 5px;
-    margin-bottom: 10px;
-    margin-left: 15px;
-}
-```
-
-valores que usaremos: `0` - `30px`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/margin)
-
----
-
-#### border
-
-La propiedad CSS `border` establece un borde para el elemento de bloque
-
-Método abreviado:
-```CSS
-selector {
-    border: medium solid #404040;
-}
-```
-
-Descomposición de método abreviado en múltiples valores:
-```CSS
-selector {
-    border-width: medium;
-    border-style: solid;
-    border-color: #404040;
-}
-```
-
-Método abreviado, sólo 1 borde:
-```CSS
-selector {
-    border-top: medium solid #404040;
-}
-```
-
-valores que usaremos: `medium solid #444`
-
-[MDN](https://developer.mozilla.org/es/docs/Web/CSS/border)
-
----
-
-### Anexo enlaces interesantes ###
-[color names](https://www.w3schools.com/colors/colors_names.asp)
-[codePen](https://codepen.io)
